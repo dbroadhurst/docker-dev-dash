@@ -1,0 +1,25 @@
+{
+  "name": "docker-dev-dash",
+  "version": "1.0.0",
+  "description": "View log output from all docker containers",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dbroadhurst/docker-dev-dash"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "watch": "pm2 start index.js --watch --ignore-watch node_modules --no-daemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "docker",
+    "logs",
+    "dashboard"
+  ],
+  "author": "David Broadhurst",
+  "license": "MIT",
+  "bin": "docker-dev-dash",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
