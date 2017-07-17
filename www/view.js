@@ -37,23 +37,34 @@ document.addEventListener('DOMContentLoaded', function () {
   const getInfo = () => {
     return getContainers()
       .then(containers => {
-        let html = ''
+        console.log(containers)
+        let e = document.querySelector('#dashboard')
+        let eStatus = document.querySelector('.status')
+        if (containers.length) {
+          eStatus.textContent = ''
+        } else {
+          eStatus.textContent = 'Waiting for Containers...'
+        }
         containers.forEach(c => {
-          let panel = document.querySelector(`#log-${c.id}`)
-          // panel is already in the DOM
+          let panel = e.querySelector(`#log-${c.id}`)
           if (!panel) {
-            html += `
-            <div id=log-${c.id} class="panel" tabindex="1">
-              <pre class="log">No Logs</pre>
-              <div class="info">id: ${c.id} name: ${c.name}</div>
-            </div>
-            `
+            panel = document.createElement('div')
+            panel.classList.add('panel')
+            panel.id = `log-${c.id}`
+
+            let log = document.createElement('pre')
+            log.classList.add('log')
+
+            let info = document.createElement('div')
+            info.classList.add('info')
+            info.innerText = `id: ${c.id} status: ${c.status}`
+
+            panel.appendChild(log)
+            panel.appendChild(info)
+
+            e.appendChild(panel)
           }
         })
-        let node = document.querySelector('#dashboard')
-        if (html) {
-          node.innerHTML = html
-        }
 
         let logs = getLogs(containers)
         return Promise.all(logs)
@@ -61,12 +72,12 @@ document.addEventListener('DOMContentLoaded', function () {
       .then(logs => {
         logs.forEach(c => {
           if (c) {
-            let node = document.querySelector(`#log-${c.id} .log`)
+            let e = document.querySelector(`#log-${c.id} .log`)
             let log = decodeURI(c.log)
             // don't update if text hasn't changed
-            if (node.textContent !== log) {
-              node.textContent = log
-              node.scrollTop = node.scrollHeight
+            if (e && e.textContent !== log) {
+              e.textContent = log
+              e.scrollTop = e.scrollHeight
             }
           }
         })

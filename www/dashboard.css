@@ -21,6 +21,10 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0a192a', endColorstr='#133651',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
+.status {
+  font-size: 24px;
+  text-align: center;  
+}
 .dashboard {
   display: flex; 
   flex-direction: row;
@@ -45,17 +49,17 @@ body {
   font-size: 10px;
   margin: 0px;
   z-index: 0;
-  transform: scale(1); 
-  transition: transform 0.5s; 
+  /* transform: scale(1); 
+  transition: transform 0.5s;  */
 }
 
-.dashboard .panel .log:hover {
+/* .dashboard .panel .log:hover {
   border: 4px solid rgb(64,240,240);
   margin: -4px;
   position: absolute;
   z-index: 1;
   transform: scale(1.3); 
-}
+} */
 
 .dashboard .panel .log::-webkit-scrollbar { 
     display: none;
