@@ -19,6 +19,6 @@ docker-dev-dash
 Open a browser an navigate to
 
 ````
-http://localhost:3000
+http://localhost:3030
 ````
 
