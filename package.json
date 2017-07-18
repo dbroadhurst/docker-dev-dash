@@ -20,6 +20,7 @@
   "license": "MIT",
   "bin": "docker-dev-dash",
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.15.3"
   }
 }

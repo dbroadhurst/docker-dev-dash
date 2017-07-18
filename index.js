@@ -2,8 +2,11 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const { execFile } = require('child_process')
+const cors = require('cors')
+const port = process.env.port || 3030
 
-app.use(express.static(path.join(__dirname, 'www')));
+app.use(express.static(path.join(__dirname, 'app/build')));
+app.use(cors())
 
 app.get('/containers', function (req, res) {
   const format = `
@@ -61,6 +64,6 @@ app.get('/logs/:id', function (req, res) {
   })
 })
 
-app.listen(3000, function () {
-  console.log('docker-dev-dash listening on port 3000!')
+app.listen(port, function () {
+  console.log(`docker-dev-dash listening on port ${port}!`)
 })
