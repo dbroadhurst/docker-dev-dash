@@ -1,6 +1,6 @@
 {
   "name": "docker-dev-dash",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "View log output from all docker containers",
   "repository": {
     "type": "git",
