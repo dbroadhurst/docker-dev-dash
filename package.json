@@ -2,10 +2,7 @@
   "name": "docker-dev-dash",
   "version": "1.2.1",
   "description": "View log output from all docker containers",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/dbroadhurst/docker-dev-dash"
-  },
+  "homepage": "https://github.com/dbroadhurst/docker-dev-dash",
   "scripts": {
     "start": "node index.js",
     "watch": "pm2 start index.js --watch --ignore-watch node_modules --no-daemon",
