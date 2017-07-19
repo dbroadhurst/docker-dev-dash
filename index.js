@@ -1,7 +1,9 @@
+#! /usr/bin/env node
+
 const express = require('express')
 const app = express()
 const path = require('path')
-const { execFile } = require('child_process')
+const { execFile, spawnSync } = require('child_process')
 const cors = require('cors')
 const port = process.env.port || 3030
 
@@ -55,7 +57,14 @@ app.get('/logs/:id', function (req, res) {
     res.send(payload)
   }
 
-  execFile('docker', ['logs', '--tail=\"2048\"', id], { maxBuffer: 512 * 1024 }, (error, stdout, stderr) => {
+  // let logs = spawnSync('docker', ['logs', '--tail=\"2048\"', id])
+  // if (logs.stdout) {
+  //   sendInfo(logs.stdout)
+  // } else {
+  //   sendInfo(logs.stderr)
+  // }
+
+  execFile('docker', ['logs', '--tail=\"2048\"', id], { maxBuffer: 8 * 1024 * 1024 }, (error, stdout, stderr) => {
     if (stdout) {
       sendInfo(stdout)
     } else {

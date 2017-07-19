@@ -30,7 +30,7 @@ class DashboardComponent extends React.Component {
     // refresh logs
     const update = () => {
       this.props.loadContainersInfo()
-      window.setTimeout(update, 2000)
+      window.setTimeout(update, 6000)
     }
 
     update()

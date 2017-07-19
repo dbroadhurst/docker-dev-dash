@@ -18,7 +18,9 @@
   ],
   "author": "David Broadhurst",
   "license": "MIT",
-  "bin": "docker-dev-dash",
+  "bin": {
+    "docker-dev-dash": "index.js"
+  },
   "dependencies": {
     "cors": "^2.8.4",
     "express": "^4.15.3"
