@@ -1,9 +1,9 @@
 # Docker Dev Dash - Instantly see docker container logs
 
-Docker Dev Dash was developed to help monitoring docker logs during development more convenient. It aims to solve the problem of managing mutiple shell windows to see logging information coming from each container
+Docker Dev Dash was developed to help monitor docker logs during development more convenient. It aims to solve the problem of managing mutiple shell windows to see logging information coming from each container
 
 
-![Dashboard](dashboard.png)
+![Dashboard](https://s3-us-west-2.amazonaws.com/union25-public/dashboard.png)
 
 ## Getting Started
 
