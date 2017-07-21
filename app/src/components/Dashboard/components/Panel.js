@@ -38,7 +38,7 @@ class PanelComponent extends React.Component {
         <pre style={log}>{c.log}</pre>
         <div style={infoStyle}>id: {c.id}</div>
         <div style={infoStyle}>status: {c.status}</div>
-        <div style={infoStyle}>name: {c.name}</div>
+        <div style={infoStyle}>image: {c.image}</div>
       </div>
     )
   }
