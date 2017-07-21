@@ -1,6 +1,6 @@
-# Docker Dev Dash Instantly see docker container logs
+# Docker Dev Dash - Instantly see docker container logs
 
-Docker Dev Dash was developed to make make monitoring docker logs during development convenient. It aims to solve the problem of managing mutiple shell windows to see logging information comming from each container
+Docker Dev Dash was developed to help monitoring docker logs during development more convenient. It aims to solve the problem of managing mutiple shell windows to see logging information coming from each container
 
 
 ![Dashboard](dashboard.png)
@@ -19,7 +19,7 @@ You can install at a project level but there's no advantage
 docker-dev-dash
 ````
 
-Open a browser an navigate to
+Open a browser and navigate to
 
 ````
 http://localhost:3030
@@ -33,7 +33,7 @@ If you need to change the port then use the -p flag
 docker-dev-dash -p 8080
 ````
 
-Open a browser an navigate to
+Open a browser and navigate to
 
 ````
 http://localhost:8080
