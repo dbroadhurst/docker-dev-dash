@@ -1,5 +1,12 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 
+var port = window.location.href.match(/\d+/g)
+if (!port[1]) {
+  port = port[0]
+} else {
+  port = port[1]
+}
+
 function loadInfo(url) {
   return fetch(url)
     .then(res => {
@@ -17,9 +24,9 @@ function loadInfo(url) {
 }
 
 function* loadContainersInfo(action) {
-  let containersInfo = yield call(loadInfo, 'http://localhost:3030/containers')
+  let containersInfo = yield call(loadInfo, `http://localhost:${port}/containers`)
   for (let container of containersInfo) {
-    let log = yield call(loadInfo, `http://localhost:3030/logs/${container.id}`)
+    let log = yield call(loadInfo, `http://localhost:${port}/logs/${container.id}`)
     container.log = decodeURI(log.log)
   }
   yield put({ type: 'SET_CONTAINERS_INFO', payload: containersInfo })
@@ -28,3 +35,4 @@ function* loadContainersInfo(action) {
 export default function* mySaga() {
   yield takeLatest('LOAD_CONTAINERS_INFO', loadContainersInfo)
 }
+

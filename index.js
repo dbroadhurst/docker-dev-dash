@@ -5,7 +5,12 @@ const app = express()
 const path = require('path')
 const { execFile, spawnSync } = require('child_process')
 const cors = require('cors')
-const port = process.env.port || 3030
+
+let port = process.env.port || 3030
+
+if (process.argv[2] === '-p') {
+  port = process.argv[3]
+}
 
 app.use(express.static(path.join(__dirname, 'app/build')));
 app.use(cors())
@@ -56,13 +61,6 @@ app.get('/logs/:id', function (req, res) {
     res.status(200)
     res.send(payload)
   }
-
-  // let logs = spawnSync('docker', ['logs', '--tail=\"2048\"', id])
-  // if (logs.stdout) {
-  //   sendInfo(logs.stdout)
-  // } else {
-  //   sendInfo(logs.stderr)
-  // }
 
   execFile('docker', ['logs', '--tail=\"2048\"', id], { maxBuffer: 8 * 1024 * 1024 }, (error, stdout, stderr) => {
     if (stdout) {
