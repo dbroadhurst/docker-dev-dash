@@ -15,7 +15,7 @@ if (process.argv[2] === '-p') {
 app.use(express.static(path.join(__dirname, 'app/build')));
 app.use(cors())
 
-app.get('/containers', function (req, res) {
+app.get('/ps', function (req, res) {
   const sendInfo = info => {
     let data
     // make sure objects end with ','. Docker sends back malformed JSON
