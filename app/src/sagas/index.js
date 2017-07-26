@@ -26,7 +26,7 @@ function loadInfo(url) {
 function* loadContainersInfo(action) {
   let containersInfo = yield call(loadInfo, `http://localhost:${port}/containers`)
   for (let container of containersInfo) {
-    let log = yield call(loadInfo, `http://localhost:${port}/logs/${container.id}`)
+    let log = yield call(loadInfo, `http://localhost:${port}/logs/${container.ID}`)
     container.log = decodeURI(log.log)
   }
   yield put({ type: 'SET_CONTAINERS_INFO', payload: containersInfo })

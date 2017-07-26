@@ -28,7 +28,7 @@ class PanelComponent extends React.Component {
   render() {
     let c = this.props.containerInfo
     let infoStyle
-    if (c.status.includes('Exit')) {
+    if (c.Status.includes('Exit')) {
       infoStyle = Object.assign({}, info, { 'backgroundColor': 'rgb(128,0,0)' })
     } else {
       infoStyle = Object.assign({}, info, { 'backgroundColor': 'rgb(0,128,0)' })
@@ -36,9 +36,9 @@ class PanelComponent extends React.Component {
     return (
       <div key={c.id} style={panel}>
         <pre style={log}>{c.log}</pre>
-        <div style={infoStyle}>id: {c.id}</div>
-        <div style={infoStyle}>status: {c.status}</div>
-        <div style={infoStyle}>image: {c.image}</div>
+        <div style={infoStyle}>id: {c.ID}</div>
+        <div style={infoStyle}>status: {c.Status}</div>
+        <div style={infoStyle}>image: {c.Image}</div>
       </div>
     )
   }

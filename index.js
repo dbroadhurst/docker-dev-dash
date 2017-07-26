@@ -16,26 +16,18 @@ app.use(express.static(path.join(__dirname, 'app/build')));
 app.use(cors())
 
 app.get('/containers', function (req, res) {
-  const format = `
-  { 
-    \"id\": \"{{.ID}}\",
-    \"name\": \"{{.Names}}\",
-    \"createdAt\": \"{{.CreatedAt}}\",
-    \"status\": \"{{.Status}}\",
-    \"image\": \"{{.Image}}\",
-    \"runningfor\": \"{{.RunningFor}}\"
-  },`
-
   const sendInfo = info => {
-    // remove last comman in json string
-    let data = info.toString().slice(0, -2)
+    let data
+    // make sure objects end with ','. Docker sends back malformed JSON
+    // TODD: this code will need  to be updated if the response contains nested objects
+    data = info.toString().replace('}', '},')
     // create an array
     let payload = `[ ${data} ]`
     res.status(200)
     res.send(payload)
   }
 
-  execFile('docker', ['ps', '-a', '--format', format], (error, stdout, stderr) => {
+  execFile('docker', ['ps', '-a', '--format', '{{json .}}'], (error, stdout, stderr) => {
     if (error) {
       res.status(500)
       res.send([{ 'log': 'error' }])
