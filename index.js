@@ -63,6 +63,23 @@ app.get('/logs/:id', function (req, res) {
   })
 })
 
+app.get('/info', function (req, res) {
+  const sendInfo = info => {
+    res.send(info)
+  }
+
+  execFile('docker', ['info', '--format', '{{json .}}'], (error, stdout, stderr) => {
+    if (error) {
+      res.status(500)
+      res.send([{ 'log': 'error' }])
+    } else if (stdout) {
+      sendInfo(stdout)
+    } else {
+      sendInfo(stderr)
+    }
+  })
+})
+
 app.listen(port, function () {
   console.log(`docker-dev-dash listening on port ${port}!`)
 })

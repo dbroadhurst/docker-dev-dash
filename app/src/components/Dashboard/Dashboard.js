@@ -3,6 +3,11 @@ import PropTypes from 'prop-types'
 import logo from './images/horizontal_large.png'
 
 import Panel from './components/Panel'
+import Info from './components/Info'
+import { Tabs, Tab } from 'material-ui/Tabs'
+
+import InfoIcon from 'material-ui/svg-icons/action/assessment'
+import LogIcon from 'material-ui/svg-icons/action/dashboard'
 
 const banner = {
   'background': 'linear-gradient(-45deg, rgb(10,25,42) 0%,rgb(19,54,81) 100%)',
@@ -23,7 +28,14 @@ const layout = {
 class DashboardComponent extends React.Component {
   static propTypes = {
     loadContainersInfo: PropTypes.func.isRequired,
-    containers: PropTypes.array.isRequired
+    containers: PropTypes.array.isRequired,
+    loadDockerInfo: PropTypes.func.isRequired,
+    info: PropTypes.object.isRequired
+  }
+
+  constructor(props) {
+    super(props)
+    this.props.loadDockerInfo()
   }
 
   componentDidMount() {
@@ -52,11 +64,27 @@ class DashboardComponent extends React.Component {
           <div>Docker Dev Dash</div>
         </div>
 
-        <div style={layout}>
-          {this.makePanel()}
-        </div>
+        <Tabs>
 
-      </div>
+          <Tab
+            icon={<InfoIcon />}
+            label='INFO'
+            >
+            <Info info={this.props.info} />
+          </Tab>
+
+          <Tab
+            icon={<LogIcon />}
+            label='LOGS'
+            >
+            <div style={layout}>
+              {this.makePanel()}
+            </div>
+          </Tab>
+
+        </Tabs>
+
+      </div >
     )
   }
 }

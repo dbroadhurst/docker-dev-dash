@@ -32,7 +32,13 @@ function* loadContainersInfo(action) {
   yield put({ type: 'SET_CONTAINERS_INFO', payload: containersInfo })
 }
 
+function* loadDockerInfo(action) {
+  let info = yield call(loadInfo, `http://localhost:${port}/info`)
+  yield put({ type: 'SET_DOCKER_INFO', payload: info })
+}
+
 export default function* mySaga() {
   yield takeLatest('LOAD_CONTAINERS_INFO', loadContainersInfo)
+  yield takeLatest('LOAD_DOCKER_INFO', loadDockerInfo)
 }
 
