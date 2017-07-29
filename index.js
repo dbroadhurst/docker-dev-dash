@@ -20,7 +20,9 @@ app.get('/ps', function (req, res) {
     let data
     // make sure objects end with ','. Docker sends back malformed JSON
     // TODD: this code will need  to be updated if the response contains nested objects
-    data = info.toString().replace('}', '},')
+    data = info.toString().replace(/}/g, '},')
+    // remove last ','
+    data = data.slice(0, (data.lastIndexOf('},') + 1))
     // create an array
     let payload = `[ ${data} ]`
     res.status(200)
@@ -67,11 +69,10 @@ app.get('/info', function (req, res) {
   const sendInfo = info => {
     res.send(info)
   }
-
   execFile('docker', ['info', '--format', '{{json .}}'], (error, stdout, stderr) => {
     if (error) {
       res.status(500)
-      res.send([{ 'log': 'error' }])
+      res.send([{ 'log': error}])
     } else if (stdout) {
       sendInfo(stdout)
     } else {

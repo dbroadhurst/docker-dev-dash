@@ -62,6 +62,7 @@ class DashboardComponent extends React.Component {
         <div style={banner}>
           <img src={logo} alt='' />
           <div>Docker Dev Dash</div>
+          <div style={{ fontSize: '18px', color: 'rgb(128,128,128)' }}>Docker 1.8+ only</div>
         </div>
 
         <Tabs>
@@ -69,14 +70,14 @@ class DashboardComponent extends React.Component {
           <Tab
             icon={<InfoIcon />}
             label='INFO'
-            >
+          >
             <Info info={this.props.info} />
           </Tab>
 
           <Tab
             icon={<LogIcon />}
             label='LOGS'
-            >
+          >
             <div style={layout}>
               {this.makePanel()}
             </div>

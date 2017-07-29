@@ -19,7 +19,7 @@ function loadInfo(url) {
     .then(json => {
       return json
     }, e => {
-      throw new Error(`could not load ${url}`)
+      throw new Error(`could not load ${url} ${e}`)
     })
 }
 
