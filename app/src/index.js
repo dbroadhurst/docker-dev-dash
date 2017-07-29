@@ -13,6 +13,18 @@ import sagas from './sagas'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+
+import { blue800, amber50 } from 'material-ui/styles/colors'
+
+const muiTheme = getMuiTheme({
+  palette: {
+    accent1Color: amber50
+  },
+  tabs: {
+    backgroundColor: blue800
+  }
+})
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -37,7 +49,7 @@ sagaMiddleware.run(sagas)
 injectTapEventPlugin()
 
 ReactDOM.render(
-  <MuiThemeProvider>
+  <MuiThemeProvider muiTheme={muiTheme}>
     <Provider store={store}>
       <App />
     </Provider>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 const infoBody = {
   margin: '0px',
+  padding: '16px',
   backgroundColor: 'rgb(0,0,0)',
   color: 'rgb(255,255,255)'
 }
@@ -28,7 +29,13 @@ const styles = {
 
 class InfoComponent extends React.Component {
   static propTypes = {
-    info: PropTypes.object.isRequired
+    info: PropTypes.object.isRequired,
+    loadDockerInfo: PropTypes.func.isRequired
+  }
+
+  constructor(props) {
+    super(props)
+    this.props.loadDockerInfo()
   }
 
   displayInfo(info) {

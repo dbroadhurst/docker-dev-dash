@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import logo from './images/horizontal_large.png'
 
 import Panel from './components/Panel'
-import Info from './components/Info'
+import Info from './components/InfoContainer'
 import { Tabs, Tab } from 'material-ui/Tabs'
 
 import InfoIcon from 'material-ui/svg-icons/action/assessment'
@@ -28,14 +28,7 @@ const layout = {
 class DashboardComponent extends React.Component {
   static propTypes = {
     loadContainersInfo: PropTypes.func.isRequired,
-    containers: PropTypes.array.isRequired,
-    loadDockerInfo: PropTypes.func.isRequired,
-    info: PropTypes.object.isRequired
-  }
-
-  constructor(props) {
-    super(props)
-    this.props.loadDockerInfo()
+    containers: PropTypes.array.isRequired
   }
 
   componentDidMount() {

@@ -1,19 +1,19 @@
 import { connect } from 'react-redux'
 import {
-  loadContainersInfo
-} from '../../reducers/dashboard'
-import Dashboard from './Dashboard'
+  loadDockerInfo
+} from '../../../reducers/dashboard'
+import Info from './Info'
 
 const mapStatetoProps = (state) => {
   return {
-    containers: state.dashboard.containers
+    info: state.dashboard.info
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadContainersInfo: () => {
-      dispatch(loadContainersInfo())
+    loadDockerInfo: () => {
+      dispatch(loadDockerInfo())
     }
   }
 }
@@ -21,4 +21,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStatetoProps,
   mapDispatchToProps
-)(Dashboard)
+)(Info)
